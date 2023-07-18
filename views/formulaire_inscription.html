@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire Joueur</title>
+</head>
+<body>
+  <h1>Ajouter un joueur</h1>
+
+  <form action="/inscription" method="POST">
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" id="pseudo" name="pseudo" required><br>
+
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="prenom"><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea><br>
+
+    <label for="mdp">Mot de passe:</label>
+    <input type="password" id="mdp" name="mdp" required><br>
+    <button type="submit">Ajouter</button>
+  </form>
+</body>
+</html>

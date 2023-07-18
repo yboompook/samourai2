@@ -1,0 +1,7 @@
+.modal-auto-height {
+    transition: max-height 0.3s ease;
+  }
+  .second-modal {
+    top: 100% !important;
+    transform: translateY(10px) !important;
+  }

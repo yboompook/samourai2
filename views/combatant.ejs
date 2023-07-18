@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <!-- Liens vers les fichiers CSS de Bootstrap -->
+  <link rel="stylesheet" href="../css/combatant.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+  <%- include('header.ejs') %>
+  
+  <div class="container text-center mt-3">
+    <h1>Combatant Table</h1>
+    <button id="generateCombatants" class="btn btn-primary">Générer des combattants</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Vitalité</th>
+          <th>Endurance</th>
+          <th>Puissance</th>
+          <th>Dextérité</th>
+          <th>Fatigue</th>
+          <th>Niveau</th>
+        </tr>
+      </thead>
+      <tbody id="combatantTableBody">
+        <!-- Les combattants seront ajoutés dynamiquement ici -->
+      </tbody>
+    </table>
+    <label id="page" class="pluscombatant"></label>
+    <button id="moinsun" class="btn btn-primary pluscombatant"><</button>
+    <button id="moinsdix" class="btn btn-primary pluscombatant"><<</button>
+    <button id="premier" class="btn btn-primary pluscombatant">Premier</button>
+    <button id="dix" class="btn btn-primary pluscombatant">dix</button>
+    <button id="dernier" class="btn btn-primary pluscombatant">Dernier</button>
+    <button id="plusun" class="btn btn-primary pluscombatant">></button>
+    <button id="plusdix" class="btn btn-primary pluscombatant">>></button>
+    <!--<div id="detailWindow" class="modal">
+      <div class="modal-content">
+        <h1></h1>
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
+    </div>-->
+  </div>
+<!--
+  <div id="combatantModal" class="modal">
+    <div class="modal-content">
+      <h1>Combattants</h1>
+      <div id="combatantList"></div>
+      <button id="closeModal" class="btn btn-primary">Fermer</button>
+    </div>
+  </div>
+
+  <div id="nameModal" class="modal">
+    <div class="modal-content">
+      <h1>Entrez le nom du combattant</h1>
+      <input type="text" id="nameInput" placeholder="Nom du combattant">
+      <button id="nameButton" class="btn btn-primary">Créer</button>
+    </div>
+  </div>-->
+
+  <!-- Liens vers les fichiers JavaScript de Bootstrap (jQuery requis) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script src="../controllers/combatant.js"></script>
+</body>
+</html>

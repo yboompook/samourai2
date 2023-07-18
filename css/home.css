@@ -1,0 +1,120 @@
+.clickable-div {
+    cursor: pointer;
+  }
+  
+  .clickable-div img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  /*.hoverable-div {
+    position: relative;
+  }*/
+  
+  .text-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rem;
+    height: 6rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .hoverable-div:hover .text-box {
+    display: flex;
+  }
+  /*.batiment {
+    display: flex;
+    /*flex-direction: column; /* Aligne les éléments enfants verticalement */
+    /*align-items: center; /* Centre les éléments enfants horizontalement */
+    /*margin-right: 5rem; /* Espacement entre les icônes */
+  /*}*/
+  
+  .ressource {
+    display: flex;
+    /*flex-direction: column; /* Aligne les éléments enfants verticalement */
+    align-items: center; /* Centre les éléments enfants horizontalement */
+    margin-right: 5rem; /* Espacement entre les icônes */
+  }
+  
+  .image {
+    width: 6rem;
+    height: 6rem; /* Garde les proportions de l'image */
+  }
+
+  .icone {
+    width: 2rem;
+    height: 2rem; /* Garde les proportions de l'image */
+  }
+  
+  .circle-container {
+    width: 30rem; /* Largeur du conteneur du cercle */
+    height: 30rem; /* Hauteur du conteneur du cercle */
+    position: relative;
+    margin: 0 auto; /* Centre horizontalement le conteneur */
+    border-radius: 50%; /* Crée un cercle en utilisant le rayon */
+    background-color: red; /* Couleur de fond du cercle */
+    justify-content: center;
+    align-items: center;
+    /*overflow: hidden; /* Cache les parties des carrés qui dépassent du cercle */
+    /*z-index: 0; /* Place le fond du cercle en arrière-plan */
+  transform-style: preserve-3d; /* Ajout d'une perspective 3D */
+  }
+  
+  .square {
+    position: absolute;
+    top: 50%; /* Déplace le carré de moitié vers le bas */
+    left: 50%; /* Déplace le carré de moitié vers la droite */
+    transform: translate(-50%, -50%); /* Recentre le carré */
+    width: 6rem;
+    height: 6rem;
+    transform-style: preserve-3d; /* Préservation de la perspective 3D */
+    transform-origin: center center -15rem; /* Positionnement des éléments sur le cercle */
+  }
+  
+  /* Positionnement des carrés pour former un cercle */
+.square:nth-child(1) { transform: translate(-50%, -50%) rotate(90deg) translate(15rem) rotate(-90deg); }
+.square:nth-child(3) { transform: translate(-50%, -50%) rotate(210deg) translate(15rem) rotate(-210deg); }
+.square:nth-child(5) { transform: translate(-50%, -50%) rotate(330deg) translate(15rem) rotate(-330deg); }
+
+
+.popup {
+    position: fixed;
+    top: 50%; /* Déplace la pop-up de moitié vers le bas */
+    left: 50%; /* Déplace la pop-up de moitié vers la droite */
+    transform: translate(-50%, -50%); /* Recentre la pop-up */
+    width: 25rem;
+    height: 10rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 2rem;
+    max-width: 25rem;
+    text-align: center;
+  }
+  
+  .open-popup {
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-popup {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
