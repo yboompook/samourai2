@@ -1,4 +1,4 @@
-import { Joueur } from '../models/joueurs.js'; // Importer le modèle Joueur défini avec Sequelize
+import Joueur from '../models/joueurs.js'; // Importer le modèle Joueur défini avec Sequelize
 import crypto from 'crypto';
 
 // Fonction pour générer un sel aléatoire
@@ -31,10 +31,16 @@ export const verifierInformationsConnexion = async (pseudo, motDePasse) => {
       // Le joueur n'existe pas
       return { success: false, message: 'Informations de connexion invalides.' };
     }
+    console.log('joueur trouvé');
 
     // Vérifier le mot de passe
     const { mdp, sel } = joueur;
     const { hashedMotDePasse } = await hacherEtSalerMotDePasse(motDePasse, sel);
+
+    console.log('motDePasse:', motDePasse);
+    console.log('mdp:', mdp);
+    console.log('sel:', sel);
+    console.log('hashedMotDePasse:', hashedMotDePasse);
 
     if (mdp !== hashedMotDePasse) {
       // Le mot de passe est incorrect
@@ -44,7 +50,7 @@ export const verifierInformationsConnexion = async (pseudo, motDePasse) => {
     // Les informations de connexion sont valides
     return { success: true, joueur };
   } catch (error) {
-    throw new Error('Une erreur s\'est produite lors de la vérification des informations de connexion.');
+    throw new Error('Une erreur s\'est produite lors de la vérification des informations de connexion.' + error);
   }
 };
 

@@ -11,8 +11,48 @@
 <body>
   <%- include('header.ejs') %>
   
-  <div class="container text-center mt-3">
-    <h1>Combatant Table</h1>
+    <div id="detailContainer" class="detail-container">
+      <div id="detailWindow" class="modal custom-modal">
+        <div class="modal-content">
+          <div class="header">
+            <div class="name-container">
+              <h1 class="name"></h1>
+            </div>
+            <div class="fatigue-niveau-container">
+              <div class="fatigue-container">
+                <p class="fatigue"></p>
+              </div>
+              <div class="niveau-container">
+                <p class="niveau"></p>
+              </div>
+            </div>
+          </div>
+          <div class="stats">
+              <div class="stat">
+                <p class="vitalite"></p>
+                <button class="btn" id="plusvitalite">+</button>
+              </div>
+              <div class="stat">
+                <p class="endurance"></p>
+                <button class="btn" id="plusendurance">+</button>
+              </div>
+              <div class="stat">
+                <p class="puissance"></p>
+                <button class="btn" id="pluspuissance">+</button>
+              </div>
+              <div class="stat">
+                <p class="dexterite"></p>
+                <button class="btn" id="plusdexterite">+</button>
+              </div>
+                <button class="btn stat" id="combattre">combatre</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container text-center mt-3">
+      
+    <!--<h1>Combatant Table</h1>-->
     <button id="generateCombatants" class="btn btn-primary">Générer des combattants</button>
     <table class="table table-striped">
       <thead>
@@ -32,37 +72,12 @@
     </table>
     <label id="page" class="pluscombatant"></label>
     <button id="moinsun" class="btn btn-primary pluscombatant"><</button>
-    <button id="moinsdix" class="btn btn-primary pluscombatant"><<</button>
+    <button id="moinscinq" class="btn btn-primary pluscombatant"><<</button>
     <button id="premier" class="btn btn-primary pluscombatant">Premier</button>
-    <button id="dix" class="btn btn-primary pluscombatant">dix</button>
     <button id="dernier" class="btn btn-primary pluscombatant">Dernier</button>
+    <button id="pluscinq" class="btn btn-primary pluscombatant">>></button>
     <button id="plusun" class="btn btn-primary pluscombatant">></button>
-    <button id="plusdix" class="btn btn-primary pluscombatant">>></button>
-    <!--<div id="detailWindow" class="modal">
-      <div class="modal-content">
-        <h1></h1>
-        <p></p>
-        <p></p>
-        <p></p>
-      </div>
-    </div>-->
   </div>
-<!--
-  <div id="combatantModal" class="modal">
-    <div class="modal-content">
-      <h1>Combattants</h1>
-      <div id="combatantList"></div>
-      <button id="closeModal" class="btn btn-primary">Fermer</button>
-    </div>
-  </div>
-
-  <div id="nameModal" class="modal">
-    <div class="modal-content">
-      <h1>Entrez le nom du combattant</h1>
-      <input type="text" id="nameInput" placeholder="Nom du combattant">
-      <button id="nameButton" class="btn btn-primary">Créer</button>
-    </div>
-  </div>-->
 
   <!-- Liens vers les fichiers JavaScript de Bootstrap (jQuery requis) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

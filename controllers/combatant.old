@@ -1,20 +1,10 @@
-
-let combatants = [];
-
-document.addEventListener("DOMContentLoaded", async function() {
-    await getCombatants();
-
-    let selectedCombatant = combatants[0];
-    console.log(selectedCombatant)
-    if (combatants.length > 0)
-    {
-      fillDetailWindow(selectedCombatant);
-    }
-    console.log(combatants)
+document.addEventListener("DOMContentLoaded", function() {
+    getCombatants();
   });
 
 const combatantTable = document.querySelector("table");
 const combatantTableBody = document.getElementById("combatantTableBody");
+let combatants = [];
 
 // Sélection du bouton "Générer combattant"
 const generateButton = document.getElementById("generateCombatants");
@@ -31,7 +21,7 @@ async function getCombatants() {
 
     if (Array.isArray(data.combatant)) { // Vérification si data est un tableau
       combatants = data.combatant;
-      displayCurrentPage(combatants);
+      populateTable(combatants);
     }
   } catch (error) {
     console.error('Erreur lors de la récupération des combattants:', error);
@@ -306,7 +296,7 @@ function askForName(combatant) {
         if (response.ok) {
           console.log("Le combattant a été créé avec succès.");
           //combatants.push(combatant); // Ajouter le combattant à la liste
-          displayCurrentPage(combatants); // Mettre à jour le tableau des combattants
+          populateTable(combatants); // Mettre à jour le tableau des combattants
         } else {
           console.error("Erreur lors de la création du combattant :", response.status);
         }
@@ -315,6 +305,7 @@ function askForName(combatant) {
         console.error("Erreur lors de la création du combattant :", error);
       });
   }
+/*
 
   function updateCombatant(combatant) {
     // Création de l'objet de données à envoyer dans la requête
@@ -325,7 +316,6 @@ function askForName(combatant) {
       puissance: combatant.puissance,
       dexterite: combatant.dexterite,
       niveau: combatant.niveau,
-      fatigue: combatant.fatigue,
     };
   
     // Configuration de la requête HTTP PUT
@@ -336,14 +326,10 @@ function askForName(combatant) {
     };
 
     // Envoi de la requête vers la route /combatant/update avec l'ID du combattant à mettre à jour
-    fetch(`/combatant/update/${combatant.Id_combatant}`, requestOptions)
+    fetch(`/combatant/update/${combatant.id}`, requestOptions)
       .then(response => {
         if (response.ok) {
           console.log("Le combattant a été mis à jour avec succès.");
-          getCombatants();
-          setTimeout(function() {
-            displayCurrentPage(combatants)
-          }, 100);
         } else {
           console.error("Erreur lors de la mise à jour du combattant :", response.status);
         }
@@ -354,13 +340,13 @@ function askForName(combatant) {
   }
 
 
-const plusVitaliteButton = document.getElementById("plusvitalite");
-const plusEnduranceButton = document.getElementById("plusendurance");
-const plusPuissanceButton = document.getElementById("pluspuissance");
-const plusDexteriteButton = document.getElementById("plusdexterite");
+// Définir les variables pour vérifier si les boutons d'augmentation sont actifs
+let combatant;
 
 let selectedCombatant;
 
+// ... Vos autres fonctions ...
+/*
 // Ajouter les écouteurs d'événements pour les boutons +
 plusVitaliteButton.addEventListener("click", function() {
   increaseAttribute("vitalite");
@@ -377,8 +363,9 @@ plusPuissanceButton.addEventListener("click", function() {
 plusDexteriteButton.addEventListener("click", function() {
   increaseAttribute("dexterite");
 });
+*/
 // Fonction pour augmenter l'attribut du combattant sélectionné
-function increaseAttribute(attribute) {
+/*function increaseAttribute(attribute) {
   if (selectedCombatant) {
     // Vérifier quel attribut est sélectionné et l'incrémenter
     switch (attribute) {
@@ -405,16 +392,13 @@ function increaseAttribute(attribute) {
 }
 
   function fillDetailWindow(combatant) {
-    if (combatant.fatigue >=100)
-    {
-      combattreButton.disabled = true;
-    }
-    else
-    {
-      combattreButton.disabled = false;
-    }
-    selectedCombatant = combatant;
-    const detailWindow = document.getElementById("detailWindow"); // Ajout de la déclaration de detailWindow
+
+
+  // Stocker le combattant sélectionné dans la variable selectedCombatant
+  selectedCombatant = combatant;
+
+
+
     // Fixer la largeur de la fenêtre modale de détail en fonction de la largeur de tableContainer
     //const tableWidth = tableContainer.offsetWidth;
     //detailWindow.style.width = tableWidth + "px";
@@ -425,33 +409,15 @@ function increaseAttribute(attribute) {
     const nameElement = detailWindow.querySelector(".name");
     const fatigueElement = detailWindow.querySelector(".fatigue");
     const niveauElement = detailWindow.querySelector(".niveau");
-    const vitaliteElement = detailWindow.querySelector(".vitalite");
-    const enduranceElement = detailWindow.querySelector(".endurance");
-    const puissanceElement = detailWindow.querySelector(".puissance");
-    const dexteriteElement = detailWindow.querySelector(".dexterite");
   
     nameElement.textContent = combatant.nom;
     fatigueElement.textContent = "Fatigue: " + combatant.fatigue;
     niveauElement.textContent = "Niveau: " + combatant.niveau;
+  
     vitaliteElement.textContent = "vitalite: " + combatant.vitalite;
     enduranceElement.textContent = "endurance: " + combatant.endurance;
     puissanceElement.textContent = "puissance: " + combatant.puissance;
     dexteriteElement.textContent = "dexterite: " + combatant.dexterite;
-
-    if (((30 - (combatant.vitalite + combatant.endurance + combatant.puissance + combatant.dexterite)) + combatant.niveau *5) > 0)
-    {
-      plusVitaliteButton.disabled = false;
-      plusEnduranceButton.disabled = false;
-      plusPuissanceButton.disabled = false;
-      plusDexteriteButton.disabled = false;
-    }
-    else
-    {
-      plusVitaliteButton.disabled = true;
-      plusEnduranceButton.disabled = true;
-      plusPuissanceButton.disabled = true;
-      plusDexteriteButton.disabled = true;
-    }
   /*
     // Ajouter un événement de clic pour chaque bouton "Action"
     const buttons = detailWindow.querySelectorAll(".btn");
@@ -460,7 +426,7 @@ function increaseAttribute(attribute) {
         performAction(index + 1, combatant); // Appeler la fonction performAction avec l'index de l'action et le combattant
       });
     });
-*/
+*//*
     detailWindow.classList.remove("modal");
     detailWindow.classList.add("modal-dialog-centered");
     // Afficher la fenêtre modale de détail
@@ -468,7 +434,8 @@ function increaseAttribute(attribute) {
     detailContainer.appendChild(detailWindow);
     detailWindow.style.display = "block";
   }
-
+  
+*/
 
   function populateTable(combatants) {
     combatantTableBody.innerHTML = "";
@@ -608,33 +575,72 @@ function increaseAttribute(attribute) {
   document.getElementById("pluscinq").addEventListener("click", goForwardFivePages);
 
 
-  const combattreButton = document.getElementById("combattre");
+  
 
-    // Événement pour combattre le combattant sélectionné
-    combattreButton.addEventListener("click", function() {
-        if (selectedCombatant) {
-            // Ajouter de la fatigue au combattant sélectionné
-            switch (selectedCombatant.fatigue)
-            {
-              case 0:
-                selectedCombatant.fatigue += 10;
-                break;
-              case 10:
-                selectedCombatant.fatigue += 20;
-                break;
-              case 30:
-                selectedCombatant.fatigue += 30;
-                break;
-              case 60:
-                selectedCombatant.fatigue += 40;
-                break;
-            }
+/*
+function populateTable(combatants) {
+  combatantTableBody.innerHTML = "";
+  let selectedCombatants = "";
+  if (combatants.length > 10)
+  {
+    selectedCombatants = combatants.slice(page*10, 10);
+    console.log("Selected combatants:", selectedCombatants);
+  }
+  else
+  {
+    selectedCombatants = combatants;
+    const plusCombatantElements = document.querySelectorAll(".pluscombatant");
 
-            // Augmenter le niveau du combattant sélectionné de 1
-            selectedCombatant.niveau += 1;
+    for (const element of plusCombatantElements) {
+      element.style.display = "none";
+    }
+  }
 
-            // Mettre à jour les détails du combattant dans l'interface
-            updateCombatant(selectedCombatant);
-            fillDetailWindow(selectedCombatant);
-        }
+  for (const combatant of selectedCombatants) {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${combatant.nom}</td>
+      <td>${combatant.vitalite}</td>
+      <td>${combatant.endurance}</td>
+      <td>${combatant.puissance}</td>
+      <td>${combatant.dexterite}</td>
+      <td>${combatant.fatigue}</td>
+      <td>${combatant.niveau}</td>`
+
+    row.addEventListener("click", function() {
+      fillDetailWindow(combatant);
     });
+    combatantTableBody.appendChild(row);
+  }
+}*/
+/*
+function showDetails(combatant) {
+  const detailWindow = document.getElementById("detailWindow");
+  const combatantTable = document.getElementById("combatantTable");
+  combatantTable.innerHTML = `
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Vitalité</th>
+        <th>Endurance</th>
+        <th>Puissance</th>
+        <th>Dextérité</th>
+        <th>Fatigue</th>
+        <th>Niveau</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${combatant.nom}</td>
+        <td>${combatant.vitalite}</td>
+        <td>${combatant.endurance}</td>
+        <td>${combatant.puissance}</td>
+        <td>${combatant.dexterite}</td>
+        <td>${combatant.fatigue}</td>
+        <td>${combatant.niveau}</td>
+      </tr>
+    </tbody>
+  `;
+  detailWindow.style.display = "block";
+}
+*/

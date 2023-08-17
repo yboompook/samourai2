@@ -1,51 +1,58 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database.js';
-import { Joueur } from './joueurs.js';
+import Joueur from './joueurs.js';
 
-export const Combatant = sequelize.define('Combatant', {
+export class Combatant extends Model {
+  // Your model definition here
+}
+
+Combatant.init(
+  {
+    // Define the model attributes based on your SQL table schema
     Id_combatant: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
       autoIncrement: true,
-      primaryKey: true
-    },
-    vitalite: {
-      type: DataTypes.TINYINT,
-      allowNull: false
     },
     nom: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      unique: true
+      unique: true,
+    },
+    vitalite: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
     },
     endurance: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
     puissance: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
     dexterite: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
     fatigue: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
     niveau: {
       type: DataTypes.TINYINT,
-      allowNull: false
-    },
-    Id_joueur: {
-      type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: Joueur,
-        key: 'Id_joueur'
-      }
-    }
-  }, {
-    tableName: 'combatant', // Nom de la table dans la base de données
-    timestamps: false // Désactiver les timestamps automatiques (createdAt, updatedAt)
-  });
+    },
+  },
+  {
+    sequelize: sequelize,
+    modelName: 'Combatant',
+    timestamps: false,
+    tableName: 'combatant',
+  }
+);
+
+Combatant.belongsTo(Joueur, { foreignKey: 'Id_joueur', as: 'Joueur' });
+
+export default Combatant;

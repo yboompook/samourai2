@@ -1,38 +1,57 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database.js';
 
-export const Messageprive = sequelize.define('Messageprive', {
+export default class Messageprive extends Model {
+  // Your model definition here
+}
+
+Messageprive.init(
+  {
     Id_messageprive: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
       autoIncrement: true,
-      primaryKey: true
     },
     titre: {
-      type: DataTypes.STRING(100)
+      type: DataTypes.STRING(100),
     },
     corps: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     jour: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     Id_joueur: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Joueur,
-        key: 'Id_joueur'
-      }
+        model: 'joueur', // Utiliser le nom de la table pour la référence
+        key: 'Id_joueur',
+      },
     },
     Id_joueur_1: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Joueur,
-        key: 'Id_joueur'
-      }
-    }
-  }, {
-    tableName: 'messageprive', // Nom de la table dans la base de données
-    timestamps: false // Désactiver les timestamps automatiques (createdAt, updatedAt)
-  });
+        model: 'joueur', // Utiliser le nom de la table pour la référence
+        key: 'Id_joueur',
+      },
+    },
+  },
+  {
+    sequelize: sequelize,
+    modelName: 'Messageprive',
+    timestamps: false,
+    tableName: 'messageprive',
+  }
+);
+
+// Export the function that sets up the associations
+export const setupAssociations = async () => {
+  const { default: Joueur } = await import('./joueurs.js');
+
+  // Définir les associations avec le modèle "Joueur"
+  Messageprive.belongsTo(Joueur, { foreignKey: 'Id_joueur' });
+  Messageprive.belongsTo(Joueur, { foreignKey: 'Id_joueur_1', as: 'JoueurDestinataire' });
+};

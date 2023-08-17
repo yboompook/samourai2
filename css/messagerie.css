@@ -1,0 +1,6 @@
+.centered-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 100vh; /* Ajustez cette valeur en fonction de vos besoins */
+  }

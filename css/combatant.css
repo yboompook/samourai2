@@ -1,7 +1,183 @@
-.modal-auto-height {
+/*.modal-auto-height {
     transition: max-height 0.3s ease;
   }
   .second-modal {
     top: 100% !important;
     transform: translateY(10px) !important;
   }
+
+  .modal.modal-below .modal-dialog {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+  }
+
+  #detailContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+#detailWindow {
+  position: relative;
+  top: 10px;
+  width: 100%; /* La fenêtre modale de détail prend toute la largeur du parent (le tableau) */
+  /*max-width: 100%; /* Assurez-vous que la largeur maximale est également à 100% */
+/*}
+.custom-modal {
+  width: 100%; /* La fenêtre modale prendra la largeur de son conteneur */
+/*}
+
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.name-container {
+  flex-grow: 1;
+  text-align: left; /* Aligner le nom du combattant à droite */
+/*}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px; /* Ajustez la marge selon vos besoins */
+/*}
+
+.fatigue-niveau-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px; /* Ajustez la marge selon vos besoins */
+/*}
+
+/*.fatigue,
+.niveau {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Permet aux stats de se retourner à la ligne si besoin */
+/*}
+
+/* Ajouter une bordure à chaque stat */
+/*.stat {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centrer verticalement le contenu */
+/*}
+
+.stat p {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.stat button {
+  margin-left: 10px;
+}
+/* Styles pour le tableau et le bouton Générer combattants */
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#combatantTableBody {
+  cursor: pointer;
+}
+
+#generateCombatants {
+  margin-bottom: 20px;
+}
+
+/* Styles pour la fenêtre modale de détail */
+.detail-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+#detailWindow {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Styles pour les stats */
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+/* Ajouter une bordure à chaque stat */
+.stat {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stat p {
+  flex-grow: 1;
+  margin: 0;
+}
+/*
+.stat button {
+  margin-left: 10px;
+}
+*/
+
+
+
+
+
+.custom-modal {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.name-container {
+  flex-grow: 1;
+  text-align: left;
+  display: flex; /* Ajouter display flex */
+  align-items: center; /* Centrer verticalement les éléments dans name-container */
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px; /* Ajuster la marge pour séparer le nom des éléments "fatigue" et "niveau" */
+}
+
+.fatigue-niveau-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fatigue,
+.niveau {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}

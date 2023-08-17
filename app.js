@@ -1,7 +1,6 @@
 import express from 'express';
 //import exphbs from 'express-handlebars';
 import session from 'express-session';
-import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import route from './route.js'
 import { fileURLToPath } from 'url';
@@ -10,7 +9,11 @@ import serveStatic from 'serve-static';
 import ejs from 'ejs';
 import sequelize from './database.js';
 
-//import { soumettreFormulaireInscription } from './controllers/inscription.js';
+
+// Importez vos modèles ici
+import Joueur from './models/joueurs.js';
+import Clan from './models/clans.js';
+import Appartenir, { setupAssociations } from './models/appartenir.js';
 
 
 dotenv.config();
@@ -18,15 +21,26 @@ dotenv.config();
 // Vérification de la connexion à la base de données
 (async () => {
   try {
+    console.log('Connexion à la base de données.');
+
     await sequelize.authenticate();
     console.log('Connexion à la base de données établie avec succès.');
 
-    // Définir ici les routes de votre application Express
+    // Appel de la fonction pour définir les associations après la connexion à la base de données
+    //const { setupAssociations } = await import('./models/appartenir.js');
+    await setupAssociations();
+    Clan.setupAssociations();
+
 
   } catch (error) {
     console.error('Impossible de se connecter à la base de données:', error);
   }
 })();
+
+
+
+
+
 // Configuration d'Express
 //const router = express.Router();
 const app = express();
